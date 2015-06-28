@@ -1,0 +1,8 @@
+<% if errors.errors.any? %>
+  <h3>Oops there were some errors. Please try again:</h3>
+  <% errors.errors.full_messages.each do |message| %>
+    <div class="alert alert-danger" role="alert">
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>

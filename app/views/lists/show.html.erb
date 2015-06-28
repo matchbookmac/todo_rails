@@ -1,0 +1,44 @@
+<% content_for(:title, "List | To Do") %>
+
+<div class="col-md-4">
+  <h3>
+    <%= @list.name %>
+    <small><%= @list.description %></small>
+  </h3>
+
+  <div class="btn-group btn-group-xs" role="group">
+      <%= link_to "Add Task", new_list_task_path(@list),
+                          class: "btn btn-info" %>
+      <%= link_to "Edit", edit_list_path(@list),
+                          class: "btn btn-warning" %>
+      <%= link_to "Delete", list_path(@list),
+                            data: { confirm: "Are you sure?" },
+                            method: "delete",
+                            class: "btn btn-danger" %>
+  </div>
+  <hr>
+  <% if @list.tasks.any? %>
+    <ul class="list-unstyled">
+      <% @list.tasks.each do |task| %>
+        <li>
+          <%= link_to list_task_path(@list, task),
+                                data: { confirm: "Are you sure?" },
+                                method: "delete",
+                                class: "btn btn-success btn-xs" do %>
+            <i class="glyphicon glyphicon-ok" ></i>
+          <% end %>
+          <%= link_to edit_list_task_path(@list, task),
+                      class: "btn btn-xs btn-warning" do %>
+            <i class="glyphicon glyphicon-pencil" ></i>
+          <% end %>
+          <%= task.description %>
+        </li>
+        <br>
+      <% end %>
+    </ul>
+  <% else %>
+    <p>
+      There are no tasks yet!
+    </p>
+  <% end %>
+</div>
