@@ -10,9 +10,9 @@ GNU General Public License, version 3 (see below). Copyright (c) 2015 Ian C. Mac
 
 ### Description
 
-**APP NAME**
+**ToDo**
 
-<DESCRIPTION>
+Classic exploration of new framework by creating a ToDo app.
 
 ### Author(s)
 
@@ -24,7 +24,7 @@ This app was written in `Rails '4.2.3'`.
 
 Clone this repo with
 ```console
-> git clone https://github.com/matchbookmac/<REPO NAME>.git
+> git clone https://github.com/matchbookmac/todo_rails.git
 ```
 
 Install gems:
@@ -49,28 +49,23 @@ Start App:
 
 List of relations
 
-   Name     | Type  
- ---------- | -------
- <relation_0>    | table
- <relation_1>   | table
+  Name     | Type  
+ ----------|-------
+  lists    | table
+  tasks    | table
 
-<relation_0> table
+lists table
 
-id  | first_name | last_name | stylist_id
-----|------------|-----------|------------
-int | varchar    | varchar   | int
+  name   | description
+ --------|-------------
+  string | string
 
-<relation_1> table
+tasks table
 
-id  | first_name | last_name
-----|------------|-----------
-int | varchar    | varchar
+  description | list_id
+ -------------|----------
+  string      | int
 
-bands_venues join table
-
-<relation_0>_id | <relation_1>_id
---------|---------
-int     | int
 
 ### License ###
 Copyright  (C)  2015  Ian C. MacDonald
