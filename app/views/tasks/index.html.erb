@@ -1,27 +1,10 @@
 <div class="col-md-4">
-  <h3>Completed Tasks</h3>
-  <% if @complete_tasks.any? %>
-    <ul class="list-unstyled">
-      <% @complete_tasks.each do |task| %>
-        <li>
-          <%= task.description %>
-        </li>
-        <br>
-      <% end %>
-    </ul>
-  <% else %>
-    <p>
-      There are no completed tasks yet!
-    </p>
-  <% end %>
-</div>
-<div class="col-md-4">
   <h3>Incomplete Tasks</h3>
   <% if @incomplete_tasks.any? %>
     <ul class="list-unstyled">
       <% @incomplete_tasks.each do |task| %>
         <li>
-          <%= task.description %>
+          <%= task.description %> <small class="muted"><%= List.find(task.list_id).name %></small>
         </li>
         <br>
       <% end %>
@@ -29,6 +12,23 @@
   <% else %>
     <p>
       All tasks have been completed!
+    </p>
+  <% end %>
+</div>
+<div class="col-md-4">
+  <h3>Completed Tasks</h3>
+  <% if @complete_tasks.any? %>
+    <ul class="list-unstyled">
+      <% @complete_tasks.each do |task| %>
+        <li>
+          <%= task.description %> <small class="muted"><%= List.find(task.list_id).name %></small>
+        </li>
+        <br>
+      <% end %>
+    </ul>
+  <% else %>
+    <p>
+      There are no completed tasks yet!
     </p>
   <% end %>
 </div>
