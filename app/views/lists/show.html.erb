@@ -1,41 +1,74 @@
 <% content_for(:title, "List | To Do") %>
 
-<div class="col-md-4">
-  <h3>
-    <%= @list.name %>
-    <small><%= @list.description %></small>
-  </h3>
-
-  <div class="btn-group btn-group-xs" role="group">
-      <%= link_to "Add Task", new_list_task_path(@list),
-                          class: "btn btn-info" %>
-      <%= link_to "Edit", edit_list_path(@list),
-                          class: "btn btn-warning" %>
-      <%= link_to "Delete", list_path(@list),
-                            data: { confirm: "Are you sure?" },
-                            method: "delete",
-                            class: "btn btn-danger" %>
+<div class="col-md-8">
+  <div class="col-md-12">
+    <h3>
+      <%= @list.name %>
+      <small><%= @list.description %></small>
+    </h3>
+    <div class="btn-group btn-group-xs" role="group">
+        <%= link_to "Add Task", new_list_task_path(@list),
+                            class: "btn btn-info" %>
+        <%= link_to "Edit", edit_list_path(@list),
+                            class: "btn btn-warning" %>
+        <%= link_to "Delete", list_path(@list),
+                              data: { confirm: "Are you sure?" },
+                              method: "delete",
+                              class: "btn btn-danger" %>
+    </div>
+    <hr>
   </div>
-  <hr>
   <% if @list.tasks.any? %>
-    <ul class="list-unstyled">
-      <% @list.tasks.each do |task| %>
-        <% unless task.done %>
-          <li>
-            <%= link_to complete_list_task_path(@list, task),
-                        class: "btn btn-success btn-xs" do %>
-              <i class="glyphicon glyphicon-ok" ></i>
+    <div class="col-md-6">
+      <p class="lead">
+        ToDo
+      </p>
+      <% if @list.not_done.any? %>
+          <ul class="list-unstyled">
+            <% @list.not_done.each do |task| %>
+              <li>
+                <%= link_to complete_list_task_path(@list, task),
+                            class: "btn btn-success btn-xs" do %>
+                  <i class="glyphicon glyphicon-ok" ></i>
+                <% end %>
+                <%= link_to edit_list_task_path(@list, task),
+                            class: "btn btn-xs btn-warning" do %>
+                  <i class="glyphicon glyphicon-pencil" ></i>
+                <% end %>
+                <%= task.description %>
+              </li>
             <% end %>
-            <%= link_to edit_list_task_path(@list, task),
-                        class: "btn btn-xs btn-warning" do %>
-              <i class="glyphicon glyphicon-pencil" ></i>
-            <% end %>
-            <%= task.description %>
-          </li>
-        <% end %>
-        <br>
+            <br>
+          </ul>
+      <% else %>
+        <p>
+          All tasks are completed!
+        </p>
       <% end %>
-    </ul>
+    </div>
+    <p class="lead">
+      Completed Tasks
+    </p>
+    <% if @list.done.any? %>
+      <div class="col-md-6">
+        <ul class="list-unstyled">
+          <% @list.done.each do |task| %>
+            <li>
+              <%= link_to incomplete_list_task_path(@list, task),
+                          class: "btn btn-info btn-xs" do %>
+                <i class="glyphicon glyphicon-arrow-left" ></i>
+              <% end %>
+              <%= task.description %>
+            </li>
+            <br>
+          <% end %>
+        </ul>
+      </div>
+    <% else %>
+      <p>
+        No tasks have been completed yet :(
+      </p>
+    <% end %>
   <% else %>
     <p>
       There are no tasks yet!

@@ -3,7 +3,10 @@ Rails.application.routes.draw do
 
   resources :lists do
     resources :tasks do
-      get 'complete', on: :member
+      member do
+        get 'complete'
+        get 'incomplete'
+      end
     end
   end
 

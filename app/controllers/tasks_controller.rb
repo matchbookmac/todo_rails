@@ -42,11 +42,15 @@ class TasksController < ApplicationController
   def complete
     @lists = List.all
     @task = Task.find(params[:id])
-    if @task.update(done: true)
-      redirect_to list_path(@task.list)
-    else
-      render :edit
-    end
+    @task.update(done: true)
+    redirect_to list_path(@task.list)
+  end
+
+  def incomplete
+    @lists = List.all
+    @task = Task.find(params[:id])
+    @task.update(done: false)
+    redirect_to list_path(@task.list)
   end
 
   private
