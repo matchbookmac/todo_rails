@@ -28,4 +28,16 @@ describe List do
       expect(list.not_done).to eq([task_1])
     end
   end
+
+  describe '.select_options' do
+    it 'returns array of arrays of list name and corresponding id' do
+      list_0 = List.new(name: "home", description: "Things to do at home")
+      list_1 = List.new(name: "work", description: "Things to do at work")
+      list_2 = List.new(name: "fun", description: "Things to do for fun")
+      list_0.save
+      list_1.save
+      list_2.save
+      expect(List.select_options).to eql([[list_0.name, list_0.id], [list_1.name, list_1.id], [list_2.name, list_2.id]])
+    end
+  end
 end

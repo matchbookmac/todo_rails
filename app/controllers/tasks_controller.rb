@@ -25,6 +25,7 @@ class TasksController < ApplicationController
 
   def edit
     @lists = List.all
+    @select_options = List.select_options
     @list = List.find(params[:list_id])
     @task = Task.find(params[:id])
   end
