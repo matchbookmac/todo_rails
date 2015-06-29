@@ -6,4 +6,8 @@ class List < ActiveRecord::Base
   def done
     Task.where("list_id = ? AND done = ?", id, true)
   end
+
+  def not_done
+    Task.where("list_id = ? AND done = ?", id, false)
+  end
 end

@@ -16,4 +16,16 @@ describe List do
       expect(list.done).to eq([task_0])
     end
   end
+
+  describe '#not_done' do
+    it 'returns all incomplete tasks for a list' do
+      list = List.new(name: "home", description: "Things to do at home")
+      task_0 = list.tasks.new description: 'Do Laundry'
+      task_0.save
+      task_1 = list.tasks.new description: 'Fold Laundry'
+      task_1.save
+      task_0.update(done: true)
+      expect(list.not_done).to eq([task_1])
+    end
+  end
 end
