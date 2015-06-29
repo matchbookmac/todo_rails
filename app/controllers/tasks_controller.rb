@@ -1,4 +1,10 @@
 class TasksController < ApplicationController
+  def index
+    @lists = List.all
+    @complete_tasks = Task.done
+    @incomplete_tasks = Task.not_done
+  end
+
   def new
     @lists = List.all
     @list = List.find(params[:list_id])

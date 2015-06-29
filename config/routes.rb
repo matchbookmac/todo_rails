@@ -6,4 +6,6 @@ Rails.application.routes.draw do
       get 'complete', on: :member
     end
   end
+
+  resources :tasks
 end

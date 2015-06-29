@@ -28,6 +28,9 @@
             <%= link_to list.name, list_path(list) %>
           </li>
         <% end %>
+        <li>
+          <%= link_to "All Tasks", tasks_path %>
+        </li>
       </ul>
     </div>
     <%= yield %>
