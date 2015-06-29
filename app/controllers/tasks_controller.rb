@@ -25,7 +25,6 @@ class TasksController < ApplicationController
 
   def edit
     @lists = List.all
-    @select_options = List.select_options
     @list = List.find(params[:list_id])
     @task = Task.find(params[:id])
   end
@@ -56,6 +55,6 @@ class TasksController < ApplicationController
 
   private
     def task_params
-      params.require(:task).permit(:description)
+      params.require(:task).permit(:description, :list_id)
     end
 end
