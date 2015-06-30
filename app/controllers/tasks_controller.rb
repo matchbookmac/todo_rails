@@ -39,22 +39,8 @@ class TasksController < ApplicationController
     end
   end
 
-  def complete
-    @lists = List.all
-    @task = Task.find(params[:id])
-    @task.update(done: true)
-    redirect_to list_path(@task.list)
-  end
-
-  def incomplete
-    @lists = List.all
-    @task = Task.find(params[:id])
-    @task.update(done: false)
-    redirect_to list_path(@task.list)
-  end
-
   private
     def task_params
-      params.require(:task).permit(:description, :list_id)
+      params.require(:task).permit(:description, :list_id, :done)
     end
 end

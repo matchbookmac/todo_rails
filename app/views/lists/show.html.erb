@@ -27,10 +27,15 @@
           <ul class="list-unstyled">
             <% @list.not_done.each do |task| %>
               <li>
-                <%= link_to complete_list_task_path(@list, task),
-                            class: "btn btn-success btn-xs" do %>
+
+
+                <%= link_to list_task_path(@list, task, task: { done: true }),
+                                          method: :patch,
+                                          class: "btn btn-success btn-xs" do %>
                   <i class="glyphicon glyphicon-ok" ></i>
                 <% end %>
+
+
                 <%= link_to edit_list_task_path(@list, task),
                             class: "btn btn-xs btn-warning" do %>
                   <i class="glyphicon glyphicon-pencil" ></i>
@@ -54,8 +59,9 @@
         <ul class="list-unstyled">
           <% @list.done.each do |task| %>
             <li>
-              <%= link_to incomplete_list_task_path(@list, task),
-                          class: "btn btn-info btn-xs" do %>
+              <%= link_to list_task_path(@list, task, task: { done: false }),
+                                        method: :patch,
+                                        class: "btn btn-info btn-xs" do %>
                 <i class="glyphicon glyphicon-arrow-left" ></i>
               <% end %>
               <%= task.description %>
